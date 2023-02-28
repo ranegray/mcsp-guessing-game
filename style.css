@@ -1,13 +1,18 @@
 .info {
     width: 650px;
     border-radius: 30px;
-    border: 10px solid seagreen;
-    background-color: saddlebrown;
+    border: 10px solid red;
+    background-color: lightgray;
     padding: 5px;
     font-weight: bolder;
-    color: whitesmoke
+    color: black
+}
+
+.guess-form {
+    padding: 5px;
+    margin-bottom: 20px;
 }
 
 strong {
-    color: palegreen;
+    color: red;
 }
