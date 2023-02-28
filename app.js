@@ -1,7 +1,10 @@
 let userName = prompt("Who's playing?");
 let userGuess = prompt("Guess a number between 1 and 10");
 let numToGuess = Math.floor(Math.random() * 10) + 1;
-let guessArray = [];
+let guessArray = [userGuess];
+let guessCount = 0;
+
+const user = {}
 
 function checkGuess(num) {
   console.log(numToGuess);
@@ -15,9 +18,10 @@ function checkGuess(num) {
   } else if (num == numToGuess) {
     if (guessArray.length < 1) {
       alert(`Holy cow, ${userName}! First try, correct!`);
+      handleWin();
       newGame();
     }
-    alert(`Correct, you tried ${guessArray}.`);
+    handleWin();
     newGame();
   } else {
     alert(`Not even close, ${userName}!`);
@@ -25,16 +29,30 @@ function checkGuess(num) {
   }
 }
 
+function handleWin() {
+    if(user.hasOwnProperty(userName)) {
+        if (user[userName] > guessCount) {
+            alert(`Correct, ${userName}! And you beat your previous attempt by ${user[userName] - guessCount} fewer guesses.`)
+            user[userName] = guessCount;
+        }
+    } else {
+        alert(`Good job, ${userName}! We will remember your score for next time.`)
+        user[userName] = guessCount;
+    }
+}
+
 function handleGuess() {
   userGuess = prompt("Guess again.");
+  guessCount++;
   guessArray.push(userGuess);
   checkGuess(userGuess);
 }
 
 function reset() {
     numToGuess = Math.floor(Math.random() * 10) + 1;
-    guessArray = [];
+    guessCount = 0;
     userGuess = prompt("Guess a number between 1 and 10");
+    guessArray = [userGuess];
 }
 
 function newGame() {
